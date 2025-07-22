@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "warehouses",
+  "info": {
+    "singularName": "warehouse",
+    "pluralName": "warehouses",
+    "displayName": "Warehouse"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "warehouse_name": {
+      "type": "string"
+    },
+    "warehouse_address": {
+      "type": "text"
+    }
+  }
+}

@@ -432,9 +432,148 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     product_price: Schema.Attribute.Integer;
     product_qty: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
+    supplier_id: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::supplier.supplier'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    warehouse: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::warehouse.warehouse'
+    >;
+  };
+}
+
+export interface ApiReceiptReceipt extends Struct.CollectionTypeSchema {
+  collectionName: 'receipts';
+  info: {
+    displayName: 'Receipt';
+    pluralName: 'receipts';
+    singularName: 'receipt';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cashier_name: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::receipt.receipt'
+    > &
+      Schema.Attribute.Private;
+    payment_method: Schema.Attribute.String;
+    products: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    receipt_number: Schema.Attribute.Text & Schema.Attribute.Unique;
+    total_price: Schema.Attribute.Integer;
+    transaction_date: Schema.Attribute.DateTime;
+    transaction_status: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSupplierReportSupplierReport
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'supplier_reports';
+  info: {
+    displayName: 'Supplier_Report';
+    pluralName: 'supplier-reports';
+    singularName: 'supplier-report';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::supplier-report.supplier-report'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    received_confirm: Schema.Attribute.Boolean;
+    send_proof: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    shipping_date: Schema.Attribute.DateTime;
+    supplier_id: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::supplier.supplier'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSupplierSupplier extends Struct.CollectionTypeSchema {
+  collectionName: 'suppliers';
+  info: {
+    displayName: 'Supplier';
+    pluralName: 'suppliers';
+    singularName: 'supplier';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::supplier.supplier'
+    > &
+      Schema.Attribute.Private;
+    pic_contact: Schema.Attribute.BigInteger;
+    pic_supplier: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    supplier_address: Schema.Attribute.Text;
+    supplier_name: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiWarehouseWarehouse extends Struct.CollectionTypeSchema {
+  collectionName: 'warehouses';
+  info: {
+    displayName: 'Warehouse';
+    pluralName: 'warehouses';
+    singularName: 'warehouse';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::warehouse.warehouse'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    warehouse_address: Schema.Attribute.Text;
+    warehouse_name: Schema.Attribute.String;
   };
 }
 
@@ -949,6 +1088,10 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::product-category.product-category': ApiProductCategoryProductCategory;
       'api::product.product': ApiProductProduct;
+      'api::receipt.receipt': ApiReceiptReceipt;
+      'api::supplier-report.supplier-report': ApiSupplierReportSupplierReport;
+      'api::supplier.supplier': ApiSupplierSupplier;
+      'api::warehouse.warehouse': ApiWarehouseWarehouse;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

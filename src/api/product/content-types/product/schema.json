@@ -16,6 +16,11 @@
       "relation": "oneToOne",
       "target": "api::product-category.product-category"
     },
+    "supplier_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::supplier.supplier"
+    },
     "product_code": {
       "type": "string",
       "unique": true
@@ -31,6 +36,11 @@
     },
     "product_qty": {
       "type": "integer"
+    },
+    "warehouse": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::warehouse.warehouse"
     }
   }
 }
