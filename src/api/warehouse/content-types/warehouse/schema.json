@@ -11,11 +11,30 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "warehouse_code": {
+      "type": "string",
+      "required": true
+    },
     "warehouse_name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "warehouse_address": {
-      "type": "text"
+      "type": "text",
+      "required": true
+    },
+    "latitude": {
+      "type": "text",
+      "required": true
+    },
+    "longitude": {
+      "type": "text",
+      "required": true
+    },
+    "status_warehouse": {
+      "type": "string",
+      "default": "Active",
+      "required": true
     }
   }
 }

@@ -565,18 +565,24 @@ export interface ApiWarehouseWarehouse extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    latitude: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::warehouse.warehouse'
     > &
       Schema.Attribute.Private;
+    longitude: Schema.Attribute.Text & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    status_warehouse: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Active'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    warehouse_address: Schema.Attribute.Text;
-    warehouse_name: Schema.Attribute.String;
+    warehouse_address: Schema.Attribute.Text & Schema.Attribute.Required;
+    warehouse_code: Schema.Attribute.String & Schema.Attribute.Required;
+    warehouse_name: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
