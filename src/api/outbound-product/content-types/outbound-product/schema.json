@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "outbound_products",
+  "info": {
+    "singularName": "outbound-product",
+    "pluralName": "outbound-products",
+    "displayName": "Outbound_Product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "qty": {
+      "type": "integer"
+    },
+    "destination": {
+      "type": "text"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+}
