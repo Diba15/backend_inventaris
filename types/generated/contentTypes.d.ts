@@ -396,6 +396,9 @@ export interface ApiOutboundProductOutboundProduct
     > &
       Schema.Attribute.Private;
     notes: Schema.Attribute.Text;
+    out_id: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     qty: Schema.Attribute.Integer;
@@ -448,6 +451,9 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    in_id: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -576,6 +582,9 @@ export interface ApiSupplierSupplier extends Struct.CollectionTypeSchema {
     pic_supplier: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     supplier_address: Schema.Attribute.Text;
+    supplier_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     supplier_name: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

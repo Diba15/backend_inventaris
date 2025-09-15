@@ -11,6 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "in_id": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
     "product_category": {
       "type": "relation",
       "relation": "oneToOne",
