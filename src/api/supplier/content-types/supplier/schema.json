@@ -32,6 +32,10 @@
     },
     "pic_contact": {
       "type": "biginteger"
+    },
+    "with_whatsapp": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

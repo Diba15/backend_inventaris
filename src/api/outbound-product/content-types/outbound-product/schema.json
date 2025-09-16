@@ -29,6 +29,15 @@
     },
     "notes": {
       "type": "text"
+    },
+    "invoice": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
     }
   }
 }
